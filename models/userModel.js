@@ -153,14 +153,13 @@ const countUser = async () => {
 };
 
 // Edit user details
-const editUser = async (username, role, schoolid, id) => {
+const editUser = async (username, role, id) => {
   try {
     const query = `
       UPDATE users 
-      SET username = $1, role = $2, schoolid = $3 
-      WHERE id = $4 
+      SET username = $1, role = $2 WHERE id = $3 
       RETURNING *`;
-    const result = await pool.query(query, [username, role, schoolid, id]);
+    const result = await pool.query(query, [username, role, id]);
     return result.rows[0]; // Return the updated user
   } catch (error) {
     console.error("Error updating user:", error);

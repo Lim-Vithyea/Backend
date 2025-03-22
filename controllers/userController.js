@@ -166,10 +166,9 @@ const editUserbyID = async (req, res) => {
   if (!username) {
     return res.status(400).json({ error: "Cannot edit user without a username" });
   }
-
   try {
-    const result = await editUser(username, role, id);
-    if (result.rowCount === 0) {
+    const updateUser = await editUser(username, role, id);
+    if (!updateUser) {
       return res.status(404).json({ error: "User not found" });
     }
     res.json({ id, username, role, message: "User updated successfully" });
