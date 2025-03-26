@@ -20,6 +20,10 @@ app.use('/api', userRoutes);
 app.use('/api', schoolRoutes);
 app.use('/api',studentRoute);
 
+app.get('/', (req, res) => {
+    res.send('Server is running!');
+  });
+
 // Server
 const PORT = process.env.SERVER_PORT;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

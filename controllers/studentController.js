@@ -79,7 +79,7 @@ const showCountedStudent = async (req, res) => {
 const showStudentData = async (req, res) => {
     try {
       const { sid } = req.query; 
-      let studentData;
+    let studentData ;
       if (sid) {
         studentData = await showStudentDataForAdmin(sid);
       } else {
@@ -94,7 +94,7 @@ const showStudentData = async (req, res) => {
       res.status(500).json({ message: "Can't get student data", error: err.message });
     }
   };
-  
+
   const countedStudentForAdmin = async (req, res) => {
     try {
         const [countedData] = await getCountedStudent();

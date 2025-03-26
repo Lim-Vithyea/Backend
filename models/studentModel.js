@@ -108,13 +108,18 @@ const getTotalStudent = async (sid) => {
 
 
 const showStudentDataForAdmin = async (sid) => {
-    const query = `
+    try{
+        const query = `
     SELECT s.schoolname AS school_name, st.*
     FROM tblstudent st
     INNER JOIN tblschool s ON st.sid = s.sid
     WHERE st.sid = $1`;
-    const [result] = await pool.query(query,[sid]);
-    return result;
+    const {rows} = await pool.query(query,[sid]);
+    return rows;
+    } catch (err){
+        console.error("Error fetching database",err)
+    }
+    
 }
 
 const showAllStudentData = async () => {
@@ -123,8 +128,8 @@ const showAllStudentData = async () => {
       FROM tblstudent st
       INNER JOIN tblschool s ON st.sid = s.sid
     `;
-    const [result] = await pool.query(query);
-    return result;
+    const {rows} = await pool.query(query);
+    return rows;
   };
 
   const getCountedStudent = async () =>{

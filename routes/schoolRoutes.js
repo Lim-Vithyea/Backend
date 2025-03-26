@@ -1,7 +1,6 @@
 const express = require('express');
 const { addSchool, showSchools,getSchool_Name,getSchoolAmount,editSchool} = require('../controllers/schoolController');
 const { authenticateToken } = require('../middleware/auth');
-const { route } = require('./userRoutes');
 const router = express.Router();
 
 router.post('/add_school', authenticateToken, addSchool);
